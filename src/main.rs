@@ -94,10 +94,7 @@ fn input(ui: &mut egui::Ui, label: &str, tooltip: Option<&str>, widget: impl egu
 
 impl eframe::App for SARConfApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-
         egui::TopBottomPanel::top("top_panel")
-            .resizable(true)
-            .min_height(32.0)
             .show(ctx, |ui| {
                 ui.horizontal(|ui| {
                     egui::global_theme_preference_switch(ui);
@@ -132,8 +129,6 @@ impl eframe::App for SARConfApp {
             });
 
         egui::SidePanel::left("left_panel")
-            .resizable(true)
-            .default_width(300.0)
             .show(ctx, |ui| {
                 ui.heading("Transmitter Settings");
                 egui::CollapsingHeader::new("Carrier")
@@ -239,14 +234,12 @@ impl eframe::App for SARConfApp {
                             "Nb Agility:",
                             Some("This is the number of agility"),
                             egui::DragValue::new(&mut self.nb_agility)
-                                .range(0..=u32::MAX),
+                                .range(1..=u32::MAX),
                         );
                     });
             });
 
         egui::SidePanel::right("right_panel")
-            .resizable(true)
-            .default_width(300.0)
             .show(ctx, |ui| {
                 ui.heading("Receiver Settings");
                 egui::CollapsingHeader::new("Reception parameters")
@@ -305,14 +298,12 @@ impl eframe::App for SARConfApp {
                             "Nb Channel:",
                             Some("This is the number of channel"),
                             egui::DragValue::new(&mut self.nb_channel)
-                                .range(0..=u32::MAX),
+                                .range(1..=u32::MAX),
                         );
                     });
             });
 
         egui::TopBottomPanel::bottom("bottom_panel")
-            .resizable(false)
-            .min_height(0.0)
             .show(ctx, |ui| {
                 ui.heading("Chronogram");
                 let windows = vec![
