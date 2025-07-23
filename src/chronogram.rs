@@ -58,9 +58,9 @@ pub fn plot(ui: &mut Ui, pri: f64, windows: Vec<Window>) {
         .show(ui, |plot_ui| {
             
             for window in windows {
-                for i in 1..=nb_of_ambiguities {
+                for i in 0..nb_of_ambiguities {
                     let mut w = Line::new(
-                            if nb_of_ambiguities > 1 {
+                            if nb_of_ambiguities > 0 {
                                 format!("{} (Ambiguity {})", window.name, i)
                             } else {
                                 window.name.clone()
@@ -71,7 +71,7 @@ pub fn plot(ui: &mut Ui, pri: f64, windows: Vec<Window>) {
                                 [pri * i as f64 + window.end(), window.height],
                                 [pri * i as f64 + window.end(), 0.0],
                             ],
-                        ).width(2.0).fill(0.0).fill_alpha(0.5 / i as f32);
+                        ).width(2.0).fill(0.0).fill_alpha(0.5 / (i as f32 + 1.0));
 
                     if let Some(c) = window.color {
                         w = w.color(c);
