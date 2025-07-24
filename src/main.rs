@@ -140,7 +140,7 @@ impl eframe::App for SARConfApp {
 
         egui::SidePanel::left("left_panel")
             .show(ctx, |ui| {
-                ui.heading("Transmitter Settings");
+                ui.heading("Transmitter");
                 egui::CollapsingHeader::new("Carrier")
                     .default_open(true)
                     .show(ui, |ui| {
@@ -264,7 +264,7 @@ impl eframe::App for SARConfApp {
                                         .suffix(" µs")
                                 );
                                 ui.end_row();
-                                ui.label("Pulse duration:");
+                                ui.label("Pulse Duration:");
                                 ui.add(
                                     egui::DragValue::new(&mut self.tx_duration)
                                         .fixed_decimals(1)
@@ -294,7 +294,7 @@ impl eframe::App for SARConfApp {
 
         egui::SidePanel::right("right_panel")
             .show(ctx, |ui| {
-                ui.heading("Receiver Settings");
+                ui.heading("Receiver");
                 ui.add(egui::Checkbox::new(&mut self.bsar_config, "bistatic configuration"));
                 egui::CollapsingHeader::new("Carrier")
                     .default_open(true)
