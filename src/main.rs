@@ -511,11 +511,15 @@ impl eframe::App for SARConfApp {
                 .striped(true)
                 .spacing([20.0, 5.0])
                 .show(ui, |ui| {
-                    ui.label("Incidence:");
-                    ui.label(format!("{:.1}°", 90.0 - self.look_angle));
-                    ui.end_row();
-                    ui.label("Target distance:");
+                    ui.label("Radar-Target distance:");
                     ui.label(format!("{:.1} m", self.carrier_height / self.look_angle.to_radians().cos()));
+                    ui.end_row();
+                    ui.label("Ground illumination:");
+                    ui.label(format!(
+                        "from {:.1} m to {:.1} m",
+                        self.carrier_height * min_aperture_elevation_angle_deg.to_radians().tan(),
+                        self.carrier_height * max_aperture_elevation_angle_deg.to_radians().tan()
+                    ));
                     ui.end_row();
                 });
         });
