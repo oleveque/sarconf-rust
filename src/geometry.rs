@@ -28,13 +28,13 @@ fn arc_to_points_auto(radius: f64, center: (f64, f64)) -> PlotPoints<'static> {
 
 pub fn plot(ui: &mut Ui, position: (f64, f64), look_angle_deg: f64, aperture_angles_deg: Option<(f64, f64)>, numerization_window: Option<(f64, f64)>) {
 
-    let line = Line::new(
-        "Carrier",
+    let nadir = Line::new(
+        "Nadir",
         vec![[0.0, 0.0], [position.0, position.1]],
     ).color(Color32::WHITE).style(egui_plot::LineStyle::Dashed { length: 5.0 });
 
     let target = Line::new(
-        "Target",
+        "Radar-Target",
         vec![[position.0, position.1], [position.0 + position.1 * look_angle_deg.to_radians().tan(), 0.0]],
     ).color(Color32::DARK_GREEN);
 
@@ -47,13 +47,13 @@ pub fn plot(ui: &mut Ui, position: (f64, f64), look_angle_deg: f64, aperture_ang
         .x_axis_formatter(|x, _| format!("{:.1} m", x.value))
         .y_axis_formatter(|y, _| format!("{:.1} m", y.value))
         .show(ui, |plot_ui| {
-            plot_ui.line(line);
+            plot_ui.line(nadir);
             plot_ui.line(target);
 
             if let Some(lobe) = aperture_angles_deg {
                 plot_ui.line(
                     Line::new(
-                        "Lobe",
+                        "Beamwidth",
                         vec![
                             [position.0 + position.1 * lobe.0.to_radians().tan(), 0.0],
                             [position.0, position.1],
