@@ -85,8 +85,11 @@ impl Default for SARConfApp {
 fn input(ui: &mut egui::Ui, label: &str, tooltip: Option<&str>, widget: impl egui::Widget) {
     ui.horizontal(|ui| {
         ui.label(label);
-        if let Some(t) = tooltip {
-            ui.add(egui::Label::new("❓").sense(egui::Sense::click())).on_hover_text(t);
+        if let Some(text) = tooltip {
+            let hover_text = egui::RichText::new(text)
+                .color(egui::Color32::from_rgb(200, 200, 200))
+                .monospace();
+            ui.add(egui::Label::new("❓").sense(egui::Sense::click())).on_hover_text(hover_text);
         }
         ui.add(widget);
     });
