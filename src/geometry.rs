@@ -11,7 +11,7 @@ pub fn plot(ui: &mut Ui, position: (f64, f64), depression_angle_deg: f64, apertu
     let target = Line::new(
         "Target",
         vec![[position.0, position.1], [position.0 + position.1 * depression_angle_deg.to_radians().tan(), 0.0]],
-    ).color(Color32::GREEN);
+    ).color(Color32::DARK_GREEN);
 
     Plot::new("Geometry")
         .data_aspect(1.0)
@@ -21,11 +21,11 @@ pub fn plot(ui: &mut Ui, position: (f64, f64), depression_angle_deg: f64, apertu
         .show(ui, |plot_ui| {
             plot_ui.line(line);
             plot_ui.line(target);
-            
+
             if let Some(lobe) = aperture_angles_deg {
                 plot_ui.line(
                     Line::new(
-                        "Lobe", 
+                        "Lobe",
                         vec![
                             [position.0 + position.1 * lobe.0.to_radians().tan(), 0.0],
                             [position.0, position.1],
