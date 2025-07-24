@@ -145,6 +145,7 @@ impl eframe::App for SARConfApp {
                                 .range(0.0..=f64::NAN)
                                 .suffix(" m"),
                         );
+                        ui.label(format!("({:.3} ft)", self.carrier_height/0.3048));
                         input(ui,
                             "Velocity:",
                             Some("This is the carrier velocity"),
@@ -156,9 +157,10 @@ impl eframe::App for SARConfApp {
                         input(ui,
                             "Depression:",
                             Some("This is the depression angle"),
-                            egui::DragValue::new(&mut self.depression_angle)
+                            egui::Slider::new(&mut self.depression_angle, 0.0..=90.0)
                                 .fixed_decimals(3)
-                                .range(0.0..=90.0)
+                                .trailing_fill(true)
+                                .drag_value_speed(1.0)
                                 .suffix("°"),
                         );
                     });
@@ -168,17 +170,19 @@ impl eframe::App for SARConfApp {
                         input(ui,
                             "Elevation:",
                             Some("This is the elevation aperture angle"),
-                            egui::DragValue::new(&mut self.elevation_aperture_angle)
+                            egui::Slider::new(&mut self.elevation_aperture_angle, 0.0..=360.0)
                                 .fixed_decimals(3)
-                                .range(0.0..=360.0)
+                                .trailing_fill(true)
+                                .drag_value_speed(1.0)
                                 .suffix("°"),
                         );
                         input(ui,
                             "Azimuth:",
                             Some("This is the azimuth aperture angle"),
-                            egui::DragValue::new(&mut self.azimuth_aperture_angle)
+                            egui::Slider::new(&mut self.azimuth_aperture_angle, 0.0..=360.0)
                                 .fixed_decimals(3)
-                                .range(0.0..=360.0)
+                                .trailing_fill(true)
+                                .drag_value_speed(1.0)
                                 .suffix("°"),
                         );
                         input(ui,
