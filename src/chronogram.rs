@@ -1,4 +1,4 @@
-use egui::{Color32, Ui, Vec2b};
+use eframe::egui::{Color32, Ui, Vec2b};
 use egui_plot::{Legend, Line, Plot, Corner};
 
 pub struct Window {
@@ -6,6 +6,7 @@ pub struct Window {
     pub start_time: f64,
     pub duration: f64,
     pub height: f64,
+    pub dashed: bool,
     pub color: Option<Color32>,
 }
 
@@ -16,6 +17,7 @@ impl Default for Window {
             start_time: 0.0,
             duration: 1.0,
             height: 1.0,
+            dashed: false,
             color: None,
         }
     }
@@ -70,7 +72,11 @@ pub fn plot(ui: &mut Ui, pri: f64, windows: Vec<Window>) {
                                 [pri * i as f64 + window.end(), window.height],
                                 [pri * i as f64 + window.end(), 0.0],
                             ],
-                        ).width(2.0).fill(0.0).fill_alpha(0.5 / (i as f32 + 1.0));
+                        ).width(2.0).fill(0.0).fill_alpha(0.6 / (i as f32 + 1.0));
+
+                    if window.dashed {
+                        w = w.style(egui_plot::LineStyle::Dashed { length: 5.0 });
+                    }
 
                     if let Some(c) = window.color {
                         w = w.color(c);
