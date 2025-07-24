@@ -56,11 +56,10 @@ pub fn plot(ui: &mut Ui, pri: f64, windows: Vec<Window>) {
         .include_x(nb_of_ambiguities as f64 * pri)
         .legend(legend)
         .show(ui, |plot_ui| {
-            
             for window in windows {
                 for i in 0..nb_of_ambiguities {
                     let mut w = Line::new(
-                            if nb_of_ambiguities > 0 {
+                            if i > 0 {
                                 format!("{} (Ambiguity {})", window.name, i)
                             } else {
                                 window.name.clone()
