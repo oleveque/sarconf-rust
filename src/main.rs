@@ -482,7 +482,7 @@ impl eframe::App for SARConfApp {
                     .spacing([20.0, 5.0])
                     .show(ui, |ui| {
                         ui.label("Final PRF:");
-                        ui.label(format!("{:.1} Hz", 1e6/self.pri/self.nb_agility as f64));
+                        ui.label(format!("{:.1} Hz", 1e6/self.pri/self.nb_agilities as f64));
                         ui.end_row();                        
                     });
 
