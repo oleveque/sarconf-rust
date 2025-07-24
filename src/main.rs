@@ -108,6 +108,9 @@ impl eframe::App for SARConfApp {
                     ui.separator();
                     ui.label("Configuration Name:");
                     ui.text_edit_singleline(&mut self.config_name);
+                    if ui.button("Reset").clicked() {
+                        *self = SARConfApp::default();
+                    }
                     ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                         let export_button = ui.button("Export");
                         egui::Popup::menu(&export_button)
