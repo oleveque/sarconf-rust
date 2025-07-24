@@ -1,5 +1,5 @@
-use eframe::egui::{self, Color32, Ui};
-use egui_plot::{Legend, Corner, Plot, Line, PlotPoints};
+use eframe::egui::{Color32, Ui};
+use egui_plot::{Plot, Line, PlotPoints, Legend, Corner};
 
 fn arc_to_points(radius: f64, start_angle_deg: f64, end_angle_deg: f64, center: (f64, f64)) -> PlotPoints<'static> {
     let points: Vec<[f64; 2]> = (0..=100)

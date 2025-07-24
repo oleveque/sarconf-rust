@@ -1,5 +1,5 @@
 use eframe::egui::{Color32, Ui, Vec2b};
-use egui_plot::{Legend, Line, Plot, Corner};
+use egui_plot::{Plot, Line, Legend, Corner};
 
 pub struct Window {
     pub name: String,

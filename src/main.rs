@@ -21,10 +21,10 @@ struct SARConfApp {
     pri: f64,
     tx_offset: f64,
     tx_duration: f64,
-    nb_agility: u32,
+    nb_agilities: u32,
 
     // Receiver parameters
-    nb_channel: u32,
+    nb_channels: u32,
     fech: f64,
     rx_offset: f64,
     rx_duration: f64,
@@ -63,8 +63,8 @@ impl Default for SARConfApp {
             pri: 100.0,
             tx_offset: 0.0,
             tx_duration: 10.0,
-            nb_agility: 1,
-            nb_channel: 1,
+            nb_agilities: 1,
+            nb_channels: 1,
             fech: 0.0,
             rx_offset: 24.0,
             rx_duration: 21.0,
@@ -239,9 +239,9 @@ impl eframe::App for SARConfApp {
                                         .suffix(" MHz")
                                 );
                                 ui.end_row();
-                                ui.label("Agility:");
+                                ui.label("Nb of Agilities:");
                                 ui.add(
-                                    egui::DragValue::new(&mut self.nb_agility)
+                                    egui::DragValue::new(&mut self.nb_agilities)
                                         .range(1..=u32::MAX)
                                 );
                                 ui.end_row();
@@ -394,9 +394,9 @@ impl eframe::App for SARConfApp {
                                         .suffix(" µs")
                                 );
                                 ui.end_row();
-                                ui.label("Nb Channel:");
+                                ui.label("Nb of Channels:");
                                 ui.add(
-                                    egui::DragValue::new(&mut self.nb_channel)
+                                    egui::DragValue::new(&mut self.nb_channels)
                                         .range(1..=u32::MAX)
                                 );
                                 ui.end_row();
